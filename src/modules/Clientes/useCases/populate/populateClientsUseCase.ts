@@ -14,12 +14,12 @@ export class PopulateClientsUseCase {
 
         let clientes = Array<IClientes>();
 
-        data.forEach((cliente:any) => {
+        data.forEach((cliente:string) => {
 
             clientes.push({
-                id: Object.values(cliente)[0] as string,
-                nome: Object.values(cliente)[1] as string,
-                dataNascimento: Object.values(cliente)[2] as string
+                id: Object.values(cliente)[0],
+                nome: Object.values(cliente)[1],
+                dataNascimento: Object.values(cliente)[2]
             });
 
         })
@@ -50,8 +50,6 @@ export class PopulateClientsUseCase {
             dia = dia.length === 1 ? `0${dia}` : dia;
             
             cliente.dataNascimento = `${ano}-${mes}-${dia}`;
-            
-            console.log(cliente.dataNascimento);
 
         })
 
