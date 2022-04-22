@@ -1,6 +1,7 @@
 import axios from "axios";
+import { prisma } from "../../../../database/prismaClient";
 
-interface IClientes {
+interface ICliente {
     id: string;
     nome: string;
     dataNascimento: string;
@@ -12,7 +13,7 @@ export class PopulateClientsUseCase {
 
         const { data } = await axios.get('https://firebasestorage.googleapis.com/v0/b/testemonomytobackend/o/Clientes.json?alt=media&token=2fb4fc55-5299-4dfc-9059-d2ddb4ec67ab');
 
-        let clientes = Array<IClientes>();
+        let clientes = Array<ICliente>();
 
         data.forEach((cliente:string) => {
 
@@ -26,7 +27,7 @@ export class PopulateClientsUseCase {
 
         const regex = /[^-\d]/g;
 
-        clientes.forEach((cliente:IClientes) => {
+        clientes.forEach((cliente:ICliente) => {
 
             cliente.dataNascimento = cliente.dataNascimento.replace(regex, '-').replace('--', '-');
 
@@ -53,8 +54,19 @@ export class PopulateClientsUseCase {
 
         })
 
+        clientes.forEach(async element => {
+            await prisma.clients.create({
+                data: {
+                    id: element.id,
+                    nome: element.nome,
+                    dataNascimento: new Date(element.dataNascimento)
+                }
+            })
+        });
+
+        const clientesCadastrados = await prisma.clients.findMany();
     
-        return clientes;
+        return clientesCadastrados;
 
     }
 
