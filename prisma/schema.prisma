@@ -9,9 +9,22 @@ datasource db {
 
 model Clients {
 
-  id String @id @default(uuid())
-  nome String
+  id             String   @id @default(uuid())
+  nome           String
   dataNascimento DateTime
 
   @@map("clients")
+}
+
+model Products {
+
+  id            String  @id @default(uuid())
+  marca         String
+  classificacao String
+  nome          String
+  teorAlcoolico Int
+  regiao        String
+  precoAtual    Decimal @db.Decimal(10, 2)
+
+  @@map("products")
 }
