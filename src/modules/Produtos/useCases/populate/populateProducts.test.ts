@@ -17,8 +17,6 @@ describe("Populate table products", () => {
 
         const products = await populateProductsUseCase.execute();
 
-        console.log(products);
-
         expect(products[0].precoAtual).toBe("110.00");
         
         expect(products.length).toBeGreaterThan(0);
