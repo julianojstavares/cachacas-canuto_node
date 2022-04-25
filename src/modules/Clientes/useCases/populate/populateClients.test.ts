@@ -21,4 +21,10 @@ describe("Populate Clients", () => {
 
     });
 
+    afterAll(async () => {
+            
+            await prisma.clients.deleteMany({});
+    
+    })
+
 })

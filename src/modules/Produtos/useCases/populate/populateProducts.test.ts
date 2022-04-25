@@ -20,8 +20,9 @@ describe("Populate table products", () => {
         expect(products[0].precoAtual).toBe("110.00");
         
         expect(products.length).toBeGreaterThan(0);
+        
+        await prisma.products.deleteMany();
 
     });
-
 
 })
