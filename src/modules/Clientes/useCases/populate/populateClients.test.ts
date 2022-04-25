@@ -5,9 +5,15 @@ describe("Populate Clients", () => {
 
     beforeAll(async () => {
         
-        const data = await prisma.clients.count();
+        let data = await prisma.clients.count();
 
-        if (data > 0) await prisma.clients.deleteMany({});
+        while (data > 0) {
+
+            await prisma.clients.deleteMany({});
+
+            data = await prisma.clients.count();
+
+        }
 
     })
 
@@ -23,7 +29,15 @@ describe("Populate Clients", () => {
 
     afterAll(async () => {
             
-        await prisma.clients.deleteMany({});
+        let data = await prisma.clients.count();
+
+        while (data > 0) {
+
+            await prisma.clients.deleteMany({});
+
+            data = await prisma.clients.count();
+
+        }
     
     })
 

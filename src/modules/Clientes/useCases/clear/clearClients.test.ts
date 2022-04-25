@@ -6,6 +6,7 @@ describe("Clear data on table clients", () => {
     beforeAll(async () => {
 
         const data = await prisma.clients.count();
+        
         if (data < 1) {
 
             await prisma.clients.create({
@@ -27,6 +28,10 @@ describe("Clear data on table clients", () => {
             const clients = await clearClientsUseCase.execute();
     
             expect(clients.status).toBe("Successfully Cleaned");
+
+            const clientes = await prisma.clients.count();
+            
+            expect(clientes).toBe(0);
     
     })
 

@@ -10,9 +10,8 @@ describe("Populate table sales", () => {
     
     beforeAll(async () => {
 
-        console.log("before all sales");
-        
         const nClients = await prisma.clients.count();
+
         const nProducts = await prisma.products.count();
         
         if(nClients < 1)
@@ -42,8 +41,6 @@ describe("Populate table sales", () => {
                 itensVendidos: true,
             }
         })
-        console.log(venda);
-        // expect(true).toBe(true);
 
     });
 

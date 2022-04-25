@@ -9,6 +9,8 @@ describe("Populate table products", () => {
 
         if (data > 0) await prisma.products.deleteMany({});
 
+        expect(data).toBe(0);
+
     })
 
     test("should return a list of products", async () => {
