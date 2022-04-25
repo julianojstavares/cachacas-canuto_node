@@ -20,9 +20,23 @@ describe("Populate table products", () => {
         expect(products[0].precoAtual).toBe("110.00");
         
         expect(products.length).toBeGreaterThan(0);
-        
-        await prisma.products.deleteMany();
 
     });
+    
+    afterAll(async () => {
+
+        let data = await prisma.products.count();
+
+        while (data > 0) {
+
+            await prisma.products.deleteMany({});
+
+            data = await prisma.products.count();
+
+        }
+
+        expect(data).toBe(0);
+
+    })
 
 })
