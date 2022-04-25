@@ -9,6 +9,8 @@ describe("Populate table products", () => {
 
         if (data > 0) await prisma.products.deleteMany({});
 
+        expect(data).toBe(0);
+
     })
 
     test("should return a list of products", async () => {
@@ -22,6 +24,21 @@ describe("Populate table products", () => {
         expect(products.length).toBeGreaterThan(0);
 
     });
+    
+    afterAll(async () => {
 
+        let data = await prisma.products.count();
+
+        while (data > 0) {
+
+            await prisma.products.deleteMany({});
+
+            data = await prisma.products.count();
+
+        }
+
+        expect(data).toBe(0);
+
+    })
 
 })
