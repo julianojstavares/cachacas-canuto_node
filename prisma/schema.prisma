@@ -13,6 +13,8 @@ model Clients {
   nome           String
   dataNascimento DateTime
 
+  compras Sales[]
+
   @@map("clients")
 }
 
@@ -26,5 +28,34 @@ model Products {
   regiao        String
   precoAtual    Decimal @db.Decimal(10, 2)
 
+  itensVendidos ItemsSold[]
+
   @@map("products")
+}
+
+model Sales {
+
+  id        String   @id @default(uuid())
+  data      DateTime
+  idCliente String
+
+  itensVendidos ItemsSold[]
+
+  clientRelation Clients? @relation(fields: [idCliente], references: [id], onDelete: Cascade)
+
+  @@map("sales")
+}
+
+model ItemsSold {
+
+  id         String @id @default(uuid())
+  quantidade Int
+
+  idVenda   String
+  idProduto String
+
+  saleRelation    Sales?    @relation(fields: [idVenda], references: [id], onDelete: Cascade)
+  productRelation Products? @relation(fields: [idProduto], references: [id], onDelete: Cascade)
+
+  @@map("items_sales")
 }
