@@ -50,6 +50,7 @@ model ItemsSold {
 
   id         String @id @default(uuid())
   quantidade Int
+  precoUnitario Decimal @db.Decimal(10, 2)
 
   idVenda   String
   idProduto String
