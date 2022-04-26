@@ -49,7 +49,7 @@ describe('Search clients', () => {
 
     })
 
-    test('Should return clients by birth date', async() => {
+    test('Should return clients by birth date ascending order', async() => {
 
         const result = await searchClientsUseCase.execute({ nascimento: 'asc' });
 
