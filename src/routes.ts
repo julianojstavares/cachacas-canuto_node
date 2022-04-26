@@ -5,6 +5,7 @@ import { ClearClientsController } from "./modules/Clientes/useCases/clear/clearC
 import { PopulateClientsController } from "./modules/Clientes/useCases/populate/populateClientsController";
 import { PopulateProductsController } from './modules/Produtos/useCases/populate/populateProductsController';
 import { ClearProductsController } from './modules/Produtos/useCases/clear/clearProductsController';
+import { SearchClientsController } from './modules/Clientes/useCases/search/searchClientsController';
 
 const routes = Router();
 
@@ -14,6 +15,9 @@ routes.post("/clients", ensureTableEmpty('clients'), populateClientsController.h
 
 const clearClientsController = new ClearClientsController();
 routes.delete("/clients", ensureTableNotEmpty('clients'), clearClientsController.handle);
+
+const searchClientsController = new SearchClientsController();
+routes.get("/clients", ensureTableNotEmpty('clients'), searchClientsController.handle);
 
 // Produtos
 const populateProductsController = new PopulateProductsController();
