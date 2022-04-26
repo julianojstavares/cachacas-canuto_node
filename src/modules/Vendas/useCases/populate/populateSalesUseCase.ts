@@ -19,14 +19,8 @@ export class PopulateSalesUseCase {
                         id: element.Id,
                         data: new Date(element.Data),
                         clientRelation: {
-                            connectOrCreate: {
-                                where: {
-                                    id: element.IdCliente
-                                },
-                                create: {
-                                    nome: "bla",
-                                    dataNascimento: new Date(Date.now()),
-                                }
+                            connect: {
+                                id: element.IdCliente
                             }
                         }
                         
@@ -63,50 +57,6 @@ export class PopulateSalesUseCase {
             }));
 
         }
-
-        // jsonVendas.forEach(async (element:any) => {
-
-        //     const venda = await prisma.sales.create({
-
-        //        data: {
-
-        //            data: new Date(element.Data),
-        //            clientRelation: {
-        //                connect: {
-        //                    id: element.IdCliente
-        //                }
-        //            },
-        //        }
-
-        //     });
-
-        //     element.Itens.forEach(async (item:any) => {
-
-        //         await prisma.itemsSold.create({
-
-        //             data: {
-
-        //                 quantidade: item.Quantidade,
-        //                 precoUnitario: item.PrecoUnitario,
-        //                 saleRelation: {
-        //                     connect: {
-        //                         id: venda.id
-        //                     }
-        //                 },
-        //                 productRelation: {
-        //                     connect: {
-        //                         id: item.Id
-        //                     }
-        //                 }
-
-        //             }
-
-        //         });
-
-
-        //     })
-
-        // })
 
         await saveData();
 
