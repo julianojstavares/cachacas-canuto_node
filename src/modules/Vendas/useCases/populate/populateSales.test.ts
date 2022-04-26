@@ -36,6 +36,21 @@ describe("Populate table sales", () => {
         expect(nProducts).toBeGreaterThan(0);
 
     })
+
+    test("should table sales don't have data", async () => {
+
+        let nSales = await prisma.sales.count();
+
+        if(nSales > 0)
+        {
+            await prisma.itemsSold.deleteMany({});
+            await prisma.sales.deleteMany({});
+            nSales = await prisma.sales.count();
+        }
+
+        expect(nSales).toBe(0);
+
+    })
     
     test("should return a list of sales", async () => {
         
