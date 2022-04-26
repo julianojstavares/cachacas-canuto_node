@@ -35,28 +35,31 @@ model Products {
 
 model Sales {
 
-  id        String   @id @default(uuid())
-  data      DateTime
-  idCliente String
+  id   String   @id @default(uuid())
+  data DateTime
 
   itensVendidos ItemsSold[]
 
   clientRelation Clients? @relation(fields: [idCliente], references: [id], onDelete: Cascade)
+
+  idCliente String?
 
   @@map("sales")
 }
 
 model ItemsSold {
 
-  id         String @id @default(uuid())
-  quantidade Int
+  id            String  @id @default(uuid())
+  quantidade    Int
   precoUnitario Decimal @db.Decimal(10, 2)
 
-  idVenda   String
-  idProduto String
+  saleRelation Sales? @relation(fields: [idVenda], references: [id], onDelete: Cascade)
 
-  saleRelation    Sales?    @relation(fields: [idVenda], references: [id], onDelete: Cascade)
+  idVenda String?
+
   productRelation Products? @relation(fields: [idProduto], references: [id], onDelete: Cascade)
+
+  idProduto String?
 
   @@map("items_sales")
 }
