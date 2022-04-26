@@ -60,9 +60,9 @@ export class PopulateSalesUseCase {
 
         await saveData();
 
-        const sales = await prisma.sales.findMany();
+        const nSales = await prisma.sales.count();
 
-        return sales;
+        return `${nSales} vendas foram registradas`;
 
     }
 
