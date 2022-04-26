@@ -30,9 +30,9 @@ describe("Populate table sales", () => {
     test("should table clients and products have data", async () => {
 
         const nClients = await prisma.clients.count();
-        const nProducts = await prisma.products.count();
-
         expect(nClients).toBeGreaterThan(0);
+
+        const nProducts = await prisma.products.count();
         expect(nProducts).toBeGreaterThan(0);
 
     })
@@ -44,7 +44,6 @@ describe("Populate table sales", () => {
         const sales = await populateSalesUseCase.execute();
 
         expect(sales.length).toBeGreaterThan(0);
-
 
     });
 
