@@ -1,5 +1,6 @@
 import axios from "axios";
 import { prisma } from "../../../../database/prismaClient";
+import jsonClientes from "../../../../database/Clientes.json";
 
 interface ICliente {
     id: string;
@@ -11,11 +12,11 @@ export class PopulateClientsUseCase {
 
     async execute(){
 
-        const { data } = await axios.get('https://firebasestorage.googleapis.com/v0/b/testemonomytobackend/o/Clientes.json?alt=media&token=2fb4fc55-5299-4dfc-9059-d2ddb4ec67ab');
+        // const { data } = await axios.get('https://firebasestorage.googleapis.com/v0/b/testemonomytobackend/o/Clientes.json?alt=media&token=2fb4fc55-5299-4dfc-9059-d2ddb4ec67ab');
 
         let clientes = Array<ICliente>();
 
-        data.forEach((cliente:string) => {
+        jsonClientes.forEach((cliente) => {
 
             clientes.push({
                 id: Object.values(cliente)[0],

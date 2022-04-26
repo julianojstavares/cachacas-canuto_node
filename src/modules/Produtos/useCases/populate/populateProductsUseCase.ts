@@ -1,6 +1,7 @@
 import axios from "axios";
 import { prisma } from "../../../../database/prismaClient";
 import { Decimal } from "@prisma/client/runtime";
+import jsonProdutos from "../../../../database/Produtos.json";
 
 interface IProduto {
     id: string;
@@ -16,11 +17,11 @@ export class PopulateProductsUseCase {
 
     async execute() {
 
-        const { data } = await axios.get('https://firebasestorage.googleapis.com/v0/b/testemonomytobackend/o/Catalogo.json?alt=media&token=b1e62709-c1a1-4b39-94ef-596c0fb65030');
+        // const { data } = await axios.get('https://firebasestorage.googleapis.com/v0/b/testemonomytobackend/o/Catalogo.json?alt=media&token=b1e62709-c1a1-4b39-94ef-596c0fb65030');
 
         let produtos = Array<IProduto>();
 
-        data.forEach((produto: string) => {
+        jsonProdutos.forEach((produto) => {
 
             const precoString = Object.values(produto)[6];
             const preco = parseFloat(precoString).toFixed(2);

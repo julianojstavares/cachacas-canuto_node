@@ -26,6 +26,16 @@ describe("Populate table sales", () => {
             await populateProductsUseCase.execute();
         }
     })
+
+    test("should table clients and products have data", async () => {
+
+        const nClients = await prisma.clients.count();
+        const nProducts = await prisma.products.count();
+
+        expect(nClients).toBeGreaterThan(0);
+        expect(nProducts).toBeGreaterThan(0);
+
+    })
     
     test("should return a list of sales", async () => {
         
@@ -35,12 +45,6 @@ describe("Populate table sales", () => {
 
         expect(sales.length).toBeGreaterThan(0);
 
-        const venda = await prisma.sales.findFirst({
-            include: {
-                clientRelation: true,
-                itensVendidos: true,
-            }
-        })
 
     });
 
