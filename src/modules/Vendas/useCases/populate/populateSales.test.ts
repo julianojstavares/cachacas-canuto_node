@@ -58,7 +58,7 @@ describe("Populate table sales", () => {
         
         const sales = await populateSalesUseCase.execute();
 
-        expect(sales.length).toBeGreaterThan(0);
+        expect(sales).toBe("2508 vendas foram registradas");
 
     });
 
