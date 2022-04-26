@@ -55,15 +55,18 @@ export class PopulateClientsUseCase {
 
         })
 
-        clientes.forEach(async element => {
-            await prisma.clients.create({
+        async function saveData () {
+            await Promise.all(clientes.map(async (item) => {
+              await prisma.clients.create({
                 data: {
-                    id: element.id,
-                    nome: element.nome,
-                    dataNascimento: new Date(element.dataNascimento)
+                    nome: item.nome,
+                    dataNascimento: new Date(item.dataNascimento)
                 }
-            })
-        });
+              })
+            }));
+        }
+        
+        await saveData();
 
         const clientesCadastrados = await prisma.clients.findMany();
     

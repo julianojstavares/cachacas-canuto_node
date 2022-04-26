@@ -38,24 +38,27 @@ export class PopulateProductsUseCase {
 
         })
 
-        produtos.forEach(async element => {
+        async function saveData() {
+            await Promise.all(produtos.map(async (item) => {
+                await prisma.products.create({
+                    data: {
+                        id: item.id,
+                        marca: item.marca,
+                        classificacao: item.classificacao,
+                        nome: item.nome,
+                        teorAlcoolico: item.teorAlcoolico,
+                        regiao: item.regiao,
+                        precoAtual: new Decimal(item.precoAtual),
+                    }
+                });
+            }));
+        }
 
-            await prisma.products.create({
-                data: {
-                    id: element.id,
-                    marca: element.marca,
-                    classificacao: element.classificacao,
-                    nome: element.nome,
-                    teorAlcoolico: element.teorAlcoolico,
-                    regiao: element.regiao,
-                    precoAtual: new Decimal(element.precoAtual),
-                }
-            });
+        await saveData();
 
-
-        })
-
-        return produtos;
+        const produtosCadastrados = await prisma.products.findMany();
+        
+        return produtosCadastrados;
 
     }
 
