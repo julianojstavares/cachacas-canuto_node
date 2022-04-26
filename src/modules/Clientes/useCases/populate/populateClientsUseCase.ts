@@ -59,6 +59,7 @@ export class PopulateClientsUseCase {
             await Promise.all(clientes.map(async (item) => {
               await prisma.clients.create({
                 data: {
+                    id: item.id,
                     nome: item.nome,
                     dataNascimento: new Date(item.dataNascimento)
                 }
