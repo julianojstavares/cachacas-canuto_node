@@ -6,3 +6,60 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Clients {
+
+  id             String   @id @default(uuid())
+  nome           String
+  dataNascimento DateTime
+
+  compras Sales[]
+
+  @@map("clients")
+}
+
+model Products {
+
+  id            String  @id @default(uuid())
+  marca         String
+  classificacao String
+  nome          String
+  teorAlcoolico Int
+  regiao        String
+  precoAtual    Decimal @db.Decimal(10, 2)
+
+  itensVendidos ItemsSold[]
+
+  @@map("products")
+}
+
+model Sales {
+
+  id   String   @id @default(uuid())
+  data DateTime
+
+  itensVendidos ItemsSold[]
+
+  clientRelation Clients? @relation(fields: [idCliente], references: [id], onDelete: Cascade)
+
+  idCliente String?
+
+  @@map("sales")
+}
+
+model ItemsSold {
+
+  id            String  @id @default(uuid())
+  quantidade    Int
+  precoUnitario Decimal @db.Decimal(10, 2)
+
+  saleRelation Sales? @relation(fields: [idVenda], references: [id], onDelete: Cascade)
+
+  idVenda String?
+
+  productRelation Products? @relation(fields: [idProduto], references: [id], onDelete: Cascade)
+
+  idProduto String?
+
+  @@map("items_sales")
+}
