@@ -10,4 +10,3 @@ Para executar, após clonar, faça:
 - yarn
 - yarn prisma generate
 - yarn dev
-- abra o browser e digite "localhost:3000"
