@@ -10,6 +10,7 @@ import { SearchProductsController } from './modules/Produtos/useCases/search/sea
 import { PopulateSalesController } from './modules/Vendas/useCases/populate/populateSalesController';
 import { ClearSalesController } from './modules/Vendas/useCases/clear/clearSalesController';
 import { SearchSalesController } from './modules/Vendas/useCases/search/searchSalesController';
+import { SalesClientsController } from './modules/Clientes/useCases/sales/salesClientsController';
 
 const routes = Router();
 
@@ -22,6 +23,9 @@ routes.delete("/clients", ensureTableNotEmpty('clients'), clearClientsController
 
 const searchClientsController = new SearchClientsController();
 routes.get("/clients", ensureTableNotEmpty('clients'), searchClientsController.handle);
+
+const salesClientsController = new SalesClientsController();
+routes.get("/clients/sales", ensureTableNotEmpty('clients'), ensureTableNotEmpty('products'), ensureTableNotEmpty('sales'), salesClientsController.handle);
 
 // Produtos
 const populateProductsController = new PopulateProductsController();
