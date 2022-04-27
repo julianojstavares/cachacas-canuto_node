@@ -7,6 +7,8 @@ import { PopulateProductsController } from './modules/Produtos/useCases/populate
 import { ClearProductsController } from './modules/Produtos/useCases/clear/clearProductsController';
 import { SearchClientsController } from './modules/Clientes/useCases/search/searchClientsController';
 import { SearchProductsController } from './modules/Produtos/useCases/search/searchProductsController';
+import { PopulateSalesController } from './modules/Vendas/useCases/populate/populateSalesController';
+import { ClearSalesController } from './modules/Vendas/useCases/clear/clearSalesController';
 
 const routes = Router();
 
@@ -29,5 +31,12 @@ routes.delete("/products", ensureTableNotEmpty('products'), clearProductsControl
 
 const searchProductsController = new SearchProductsController();
 routes.get("/products", ensureTableNotEmpty('products'), searchProductsController.handle);
+
+// Vendas
+const populateSalesController = new PopulateSalesController();
+routes.post("/sales", ensureTableNotEmpty('clients'), ensureTableNotEmpty('products'), ensureTableEmpty('sales'), populateSalesController.handle);
+
+const clearSalesController = new ClearSalesController();
+routes.delete("/sales", ensureTableNotEmpty('sales'), clearSalesController.handle);
 
 export { routes };
