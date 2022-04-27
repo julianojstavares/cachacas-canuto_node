@@ -9,8 +9,8 @@ interface ISalesProducts {
 }
 
 enum OrderBy {
-    valor,
-    quantidade,
+    valor = "valor",
+    quantidade = "quantidade",
 }
 
 interface IProduct {
@@ -53,35 +53,32 @@ export class SalesProductsUseCase {
 
         }));
 
-        return mostSold.sort((a, b) => {
+        if (orderBy === OrderBy.valor) {
+    
+            if (order === Prisma.SortOrder.asc) {
+
+                return mostSold.sort((a, b) => a.valorTotalVendido - b.valorTotalVendido);
                 
-                if (orderBy === OrderBy.valor) {
-    
-                    if (order === Prisma.SortOrder.asc) {
-    
-                        return a.valorTotalVendido - b.valorTotalVendido;
-    
-                    } else {
-    
-                        return b.valorTotalVendido - a.valorTotalVendido;
-    
-                    }
-    
-                } else {
-    
-                    if (order === Prisma.SortOrder.asc) {
-    
-                        return a.quantidadeTotalVendida - b.quantidadeTotalVendida;
-    
-                    } else {
-    
-                        return b.quantidadeTotalVendida - a.quantidadeTotalVendida;
-    
-                    }
-    
-                }
-    
-        })
+            } else {
+                
+                return mostSold.sort((a, b) => b.valorTotalVendido - a.valorTotalVendido);
+
+            }
+
+        } 
+
+        if (orderBy === OrderBy.quantidade) {
+
+            if (order === Prisma.SortOrder.asc) {
+
+                return mostSold.sort((a, b) => a.quantidadeTotalVendida - b.quantidadeTotalVendida);
+
+            } else {
+
+                return mostSold.sort((a, b) => b.quantidadeTotalVendida - a.quantidadeTotalVendida);
+            }
+
+        } 
 
     }
 
