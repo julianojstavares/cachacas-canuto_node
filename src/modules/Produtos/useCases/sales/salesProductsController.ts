@@ -3,8 +3,8 @@ import { SalesProductsUseCase } from "./salesProductsUseCase";
 import { Prisma } from "@prisma/client";
 
 enum OrderBy {
-    quantidade,
-    valor,
+    valor = "valor",
+    quantidade = "quantidade",
 }
 
 
