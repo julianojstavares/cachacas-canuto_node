@@ -11,6 +11,7 @@ import { PopulateSalesController } from './modules/Vendas/useCases/populate/popu
 import { ClearSalesController } from './modules/Vendas/useCases/clear/clearSalesController';
 import { SearchSalesController } from './modules/Vendas/useCases/search/searchSalesController';
 import { SalesClientsController } from './modules/Clientes/useCases/sales/salesClientsController';
+import { SalesProductsController } from './modules/Produtos/useCases/sales/salesProductsController';
 
 const routes = Router();
 
@@ -36,6 +37,9 @@ routes.delete("/products", ensureTableNotEmpty('products'), clearProductsControl
 
 const searchProductsController = new SearchProductsController();
 routes.get("/products", ensureTableNotEmpty('products'), searchProductsController.handle);
+
+const salesProductsController = new SalesProductsController();
+routes.get("/products/sales", ensureTableNotEmpty('products'), ensureTableNotEmpty('sales'), salesProductsController.handle);
 
 // Vendas
 const populateSalesController = new PopulateSalesController();
