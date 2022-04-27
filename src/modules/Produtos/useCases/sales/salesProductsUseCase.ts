@@ -78,7 +78,9 @@ export class SalesProductsUseCase {
                 return mostSold.sort((a, b) => b.quantidadeTotalVendida - a.quantidadeTotalVendida);
             }
 
-        } 
+        }
+        
+        return mostSold;
 
     }
 
