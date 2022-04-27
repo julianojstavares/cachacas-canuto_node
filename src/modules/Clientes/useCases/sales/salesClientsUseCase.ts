@@ -26,9 +26,11 @@ export class SalesClientsUseCase {
     async execute({ dataInicial, dataFinal, classificados }: ISalesClients) {
 
 
-        let start = new Date(dataInicial as string);
-        let end = new Date(dataFinal as string);
-        let dateClause = { gte: start, lte: end };
+        let dateClause = {};
+
+        if(dataInicial && dataFinal) {
+            dateClause = { gte: new Date(dataInicial), lte: new Date(dataFinal) };
+        }
 
         let sales : IRelatorio[] = [];
         let mostSold : IMaisVendidos[] = [];
@@ -112,10 +114,10 @@ export class SalesClientsUseCase {
 
             if (classificados) {
                 ranking = mostSold.slice(0, classificados);
+            }else{
+                ranking = mostSold;
             }
 
-            if(classificados)
-            
             sales.push({
 
                 nomeCliente: clientes[i].nome,
