@@ -3,7 +3,6 @@
 - NodeJS
 - PostgreSQL
 - Prisma.io
-- Swagger UI
 
 Para executar, após clonar, faça:
 
