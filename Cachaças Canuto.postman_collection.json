@@ -1,0 +1,595 @@
+{
+	"info": {
+		"_postman_id": "74e2f861-ce0b-4728-b90f-ede7c36f874b",
+		"name": "Cachaças Canuto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Sales Client",
+					"item": [
+						{
+							"name": "Sales by Client",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/clients/sales",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"clients",
+										"sales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sales by client with ranking",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/clients/sales?classificados=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"clients",
+										"sales"
+									],
+									"query": [
+										{
+											"key": "classificados",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sales by client, date range, ranked",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/clients/sales?classificados=1&dataInicial=2021&dataFinal=2022",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"clients",
+										"sales"
+									],
+									"query": [
+										{
+											"key": "classificados",
+											"value": "1"
+										},
+										{
+											"key": "dataInicial",
+											"value": "2021"
+										},
+										{
+											"key": "dataFinal",
+											"value": "2022"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Populate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clients",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clients",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clients",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search by birth date range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clients?dataInicial=1980&dataFinal=1990",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clients"
+							],
+							"query": [
+								{
+									"key": "dataInicial",
+									"value": "1980"
+								},
+								{
+									"key": "dataFinal",
+									"value": "1990"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search All - Order by birth date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clients?nascimento=asc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clients"
+							],
+							"query": [
+								{
+									"key": "nascimento",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clients?nome=lucas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clients"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "lucas"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clients?id=0463c6c9-dbe7-447f-a27d-72a977108d19",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clients"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "0463c6c9-dbe7-447f-a27d-72a977108d19"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Sales Products",
+					"item": [
+						{
+							"name": "Sales by Product",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/sales",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										"sales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sales by Product  - OrderBy value desc",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/sales?orderBy=valor&order=desc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										"sales"
+									],
+									"query": [
+										{
+											"key": "orderBy",
+											"value": "valor"
+										},
+										{
+											"key": "order",
+											"value": "desc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sales by Product  - OrderBy amount desc",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/sales?orderBy=quantidade&order=desc",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										"sales"
+									],
+									"query": [
+										{
+											"key": "orderBy",
+											"value": "quantidade"
+										},
+										{
+											"key": "order",
+											"value": "desc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Populate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products?nome=canuto",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "canuto"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products?id=6837dbda-3868-45dc-84ec-81e70156cb1f",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6837dbda-3868-45dc-84ec-81e70156cb1f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search by interval",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products?teorMinimo=1&teorMaximo=38",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "teorMinimo",
+									"value": "1"
+								},
+								{
+									"key": "teorMaximo",
+									"value": "38"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vendas",
+			"item": [
+				{
+					"name": "Populate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sales",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sales",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search limited",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sales?pagina=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "pagina",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search by product name limited",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sales?pagina=1&nomeProduto=princesa",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "pagina",
+									"value": "1"
+								},
+								{
+									"key": "nomeProduto",
+									"value": "princesa"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search by client name limited",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sales?pagina=1&nomeCliente=lucas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "pagina",
+									"value": "1"
+								},
+								{
+									"key": "nomeCliente",
+									"value": "lucas"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search limited with data range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sales?pagina=1&dataInicial=2021&dataFinal=2022",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "pagina",
+									"value": "1"
+								},
+								{
+									"key": "dataInicial",
+									"value": "2021"
+								},
+								{
+									"key": "dataFinal",
+									"value": "2022"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
